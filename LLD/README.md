@@ -16,8 +16,11 @@ LLD/
 │   ├── I - Interface Segregation Principle/       ← Fat restaurant interfaces split into role tasks
 │   └── D - Dependency Inversion Principle/        ← MacBook hardware abstraction & constructor injection
 │
-└── Behavioral Patterns/
-    └── Strategy Pattern/                          ← Vehicle Drive Modes & Shopping Cart Payment Strategies
+└── BehavioralPatterns/
+    ├── StrategyPattern/                           ← Vehicle Drive Modes & Payment Strategies
+    └── ObserverPattern/                           ← YouTube Notifications & Weather Station Monitoring
+        ├── PullModel/                             ← Observer queries Subject on notification (YouTube case study)
+        └── PushModel/                             ← Subject pushes Data payload on notification (Weather Station)
 ```
 
 ---
@@ -25,5 +28,5 @@ LLD/
 ## 🧭 The Core Design Philosophy
 
 1. **High Cohesion & Low Coupling:** Components should do one thing well and be minimally dependent on the concrete implementation details of others.
-2. **Favor Composition over Inheritance:** Encapsulate varying algorithms into interchangeable strategy components.
+2. **Favor Composition over Inheritance:** Encapsulate varying algorithms or listeners into interchangeable components.
 3. **Program to Interfaces, not Implementations:** Code against abstractions so the system remains open for extension and resilient to change.
