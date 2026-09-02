@@ -45,7 +45,8 @@ JAVA/
     ├── 01 - Process vs Thread And Memory Model/  ← Process vs Thread, JVM Heap/Stack/PC/Registers, Memory Segments
     ├── 02 - Thread Creation And Lifecycle/       ← Runnable vs Thread, 6 Thread States, State transitions
     ├── 03 - Monitor Lock And Synchronization/    ← Monitor lock, synchronized methods/blocks, Mutex
-    └── 04 - Producer Consumer Problem/           ← Inter-thread coordination, wait(), notifyAll(), Spurious wakeups
+    ├── 04 - Producer Consumer Problem/           ← Inter-thread coordination, wait(), notifyAll(), Spurious wakeups
+    └── 05 - Explicit Locks And Condition/        ← ReentrantLock, ReadWriteLock, StampedLock, Semaphore, Condition
 ```
 
 ---
@@ -90,4 +91,9 @@ JAVA/
 | **34** | `wait()` vs `sleep()` | `wait()` **releases** the object's monitor lock; `Thread.sleep()` **retains** all held locks throughout its pause. |
 | **35** | Spurious Wakeup Guard | Always call `wait()` inside a `while` loop (never `if`) so waking threads re-evaluate conditions before proceeding. |
 | **36** | Monitor Lock Scope | Synchronize on the shared target object; locking on separate object instances gives zero mutual exclusion. |
+| **37** | `unlock()` in `finally` | Always place explicit `lock.unlock()` inside `finally` to prevent unrecoverable deadlocks on unexpected exceptions. |
+| **38** | ReadWriteLock Throughput | Use `ReentrantReadWriteLock` for read-heavy workloads to enable concurrent readers without lock contention. |
+| **39** | StampedLock Non-Reentrant | `StampedLock` is **NOT reentrant**. Re-acquiring a lock on the same thread causes immediate self-deadlock. |
+| **40** | Condition Queue Targeting | Use `Condition.await()` & `signal()` to target specific producer/consumer wait queues instead of waking all threads with `notifyAll()`. |
+
 
