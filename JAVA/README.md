@@ -35,11 +35,17 @@ JAVA/
 │   ├── 05 - Final And Static Overriding/    ← Method hiding vs Overriding, Constructor calling overridable method trap (EJ 19)
 │   └── 06 - Cosmic Object Class/            ← == vs equals(), hashCode() contract, PhoneNumber/Bigram bug, toString()
 │
-└── Phase 04 - Abstraction And Interfaces/
-    ├── 01 - Abstract Classes/               ← Partial blueprints, Abstract constructors, Illegal modifier combinations
-    ├── 02 - Interfaces/                     ← Pure capability contracts, Implicit modifiers, Multiple interfaces, Mixins
-    ├── 03 - Composition Over Inheritance/   ← Interface clash, InstrumentedHashSet double-counting bug (EJ 18), Forwarding wrapper
-    └── 04 - Java 8 Interface Evolution/     ← default/static methods, 3 Diamond resolution rules, removeIf concurrency hazard (EJ 21)
+├── Phase 04 - Abstraction And Interfaces/
+│   ├── 01 - Abstract Classes/               ← Partial blueprints, Abstract constructors, Illegal modifier combinations
+│   ├── 02 - Interfaces/                     ← Pure capability contracts, Implicit modifiers, Multiple interfaces, Mixins
+│   ├── 03 - Composition Over Inheritance/   ← Interface clash, InstrumentedHashSet double-counting bug (EJ 18), Forwarding wrapper
+│   └── 04 - Java 8 Interface Evolution/     ← default/static methods, 3 Diamond resolution rules, removeIf concurrency hazard (EJ 21)
+│
+└── Multithreading/
+    ├── 01 - Process vs Thread And Memory Model/  ← Process vs Thread, JVM Heap/Stack/PC/Registers, Memory Segments
+    ├── 02 - Thread Creation And Lifecycle/       ← Runnable vs Thread, 6 Thread States, State transitions
+    ├── 03 - Monitor Lock And Synchronization/    ← Monitor lock, synchronized methods/blocks, Mutex
+    └── 04 - Producer Consumer Problem/           ← Inter-thread coordination, wait(), notifyAll(), Spurious wakeups
 ```
 
 ---
@@ -80,3 +86,8 @@ JAVA/
 | **30** | Inheritance Fragility | Subclasses depend on undocumented superclass self-use (e.g. `HashSet.addAll` calling `add`). Use composition instead. |
 | **31** | Interface Modifiers | Interface fields are `public static final`. Interface methods are `public abstract` (pre-Java 8). Implements must be `public`. |
 | **32** | Java 8 Diamond Rules | 1. Class wins over interface. 2. Sub-interface wins over super-interface. 3. Unrelated conflict requires manual resolution. |
+| **33** | `start()` vs `run()` | Calling `run()` executes synchronously on the current thread; calling `start()` tells the JVM to spawn a new OS thread. |
+| **34** | `wait()` vs `sleep()` | `wait()` **releases** the object's monitor lock; `Thread.sleep()` **retains** all held locks throughout its pause. |
+| **35** | Spurious Wakeup Guard | Always call `wait()` inside a `while` loop (never `if`) so waking threads re-evaluate conditions before proceeding. |
+| **36** | Monitor Lock Scope | Synchronize on the shared target object; locking on separate object instances gives zero mutual exclusion. |
+
